@@ -1,0 +1,33 @@
+% Get vibration input from the user
+vibration_x = input('Enter vibration frequency (X-axis) of the car engine (in Hz): ');
+vibration_y = input('Enter vibration frequency (Y-axis) of the car engine (in Hz): ');
+vibration_z = input('Enter vibration frequency (Z-axis) of the car engine (in Hz): ');
+
+% Plot vibration levels
+axes = {'X-axis', 'Y-axis', 'Z-axis'};
+frequencies = [vibration_x, vibration_y, vibration_z];
+
+bar(axes, frequencies);
+xlabel('Axis');
+ylabel('Vibration Frequency (Hz)');
+title('Car Engine Vibration Frequencies');
+ylim([0, 3000]);  % Set the y-axis limit to 3000 Hz
+
+% Calculate overall vibration frequency
+overall_frequency = (vibration_x + vibration_y + vibration_z) / 3;
+
+% Determine condition based on overall vibration frequency
+if overall_frequency < 1500
+    condition = 'Normal';
+elseif overall_frequency < 2200
+    condition = 'Good';
+else
+    condition = 'Critical';
+end
+
+% Print results
+fprintf('Vibration Frequency (X-axis): %.2f Hz\n', vibration_x);
+fprintf('Vibration Frequency (Y-axis): %.2f Hz\n', vibration_y);
+fprintf('Vibration Frequency (Z-axis): %.2f Hz\n', vibration_z);
+fprintf('Overall Vibration Frequency: %.2f Hz\n', overall_frequency);
+fprintf('Condition: %s\n', condition);
